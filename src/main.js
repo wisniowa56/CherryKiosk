@@ -1,8 +1,28 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import Vuex from "vuex";
+import App from "./App.vue";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.use(Vuex);
+
+var store = new Vuex.Store({
+  state: {
+    component: "Test",
+  },
+  mutations: {
+    switchComponent: (state, newComponent) => (state.component = newComponent),
+  },
+  getters: {
+    getComponent: (state) => state.component,
+  },
+});
+
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  store,
+  render: (h) => h(App),
+}).$mount("#app");
