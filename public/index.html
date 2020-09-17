@@ -7,6 +7,11 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <script>
       window.$ = window.jQuery = require("jquery");
+      $(() => {
+        $(".logo-center")
+          .delay(5000)
+          .fadeOut(2000);
+      });
     </script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
