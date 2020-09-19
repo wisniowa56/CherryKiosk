@@ -10,12 +10,16 @@ Vue.use(Vuex);
 var store = new Vuex.Store({
   state: {
     component: "Test",
+    substitutions: [],
   },
   mutations: {
     switchComponent: (state, newComponent) => (state.component = newComponent),
+    setSubstitutions: (state, substitutions) =>
+      (state.substitutions = substitutions),
   },
   getters: {
     getComponent: (state) => state.component,
+    getSubstitutions: (state) => state.substitutions,
   },
 });
 

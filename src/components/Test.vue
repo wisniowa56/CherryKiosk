@@ -10,8 +10,8 @@ export default {
   name: "Test",
   methods: {
     switchComponents() {
-      this.$store.commit("switchComponent", "Test2");
-    },
+      this.$store.commit("switchComponent", "Substitutions");
+    }
   },
 };
 </script>

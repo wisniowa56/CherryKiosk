@@ -6,7 +6,10 @@
         <p>{{ $store.getters.getComponent }}</p>
       </div>
     </div>
-    <transition name="component-fade" mode="out-in">
+    <transition
+      name="component-fade"
+      mode="out-in"
+    >
       <component v-bind:is="$store.getters.getComponent" />
     </transition>
   </div>
@@ -15,19 +18,20 @@
 <script>
 import Test from "./components/Test";
 import Test2 from "./components/Test2";
+import Substitutions from "./components/Substitutions";
 
 export default {
   name: "App",
   components: {
     Test,
     Test2,
+    Substitutions,
   },
 };
 </script>
 
 <style lang="scss">
-@import "../node_modules/bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap-vue/src/index.scss";
+
 
 body {
   background: linear-gradient(
@@ -55,8 +59,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  background-color: #696969;
+  // margin-top: 60px;
+  // background-color: #696969;
 }
 
 #logo {
