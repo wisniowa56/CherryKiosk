@@ -3,36 +3,29 @@
     <div class="logo-center">
       <div id="logo">
         <img alt="CherryKiosk Logo" src="./assets/logo.png" />
-        <p>{{ $store.getters.getComponent }}</p>
+        <!-- <p>{{ $store.getters.getComponent }}</p> -->
       </div>
     </div>
-    <transition
-      name="component-fade"
-      mode="out-in"
-    >
-      <component v-bind:is="$store.getters.getComponent" />
-    </transition>
+    <div class="content" style="display: none">
+      <transition name="component-fade" mode="out-in">
+        <component v-bind:is="$store.getters.getComponent" />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
-import Test from "./components/Test";
-import Test2 from "./components/Test2";
 import Substitutions from "./components/Substitutions";
 
 export default {
   name: "App",
   components: {
-    Test,
-    Test2,
     Substitutions,
   },
 };
 </script>
 
 <style lang="scss">
-
-
 body {
   background: linear-gradient(
     45deg,
@@ -42,6 +35,10 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .component-fade-enter-active,

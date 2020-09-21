@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 var store = new Vuex.Store({
   state: {
-    component: "Test",
+    component: "Substitutions",
     substitutions: [],
   },
   mutations: {
