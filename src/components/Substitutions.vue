@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import fetch from "node-fetch";
+  //import fetch from "node-fetch";
+  import api from '@/api';
 
 export default {
   name: "Substitutions",
@@ -15,15 +16,14 @@ export default {
       scrollDelay: undefined,
     };
   },
-  mounted() {
+  async mounted() {
     this.setTableView();
 
-    fetch("https://schoolwebapi.herokuapp.com/api/substitutions/classes")
-      .then((res) => res.json())
-      .then((json) => {
-        this.$store.commit("setSubstitutions", json);
-        this.setTableView();
-      });
+      const r = await api('get', '/substitutions/classes');
+
+      console.log(r);
+      this.$store.commit("setSubstitutions", r);
+      this.setTableView();
 
     if (this.$store.getters.getSubstitutionsScrolling === false) {
       this.$store.commit("setSubstitutionsScrolling", true);
@@ -74,6 +74,8 @@ export default {
         // Create table
         let table = document.createElement("table");
         table.classList.add("table", "table-striped", "table-sm");
+        table.cellSpacing = 0;
+        table.cellPadding = 0;
 
         // Create table header
         let thead = document.createElement("thead");
@@ -153,11 +155,21 @@ h3 {
 
 table {
   font-size: 1.15em;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 div.class-div {
   margin: 1.5em 1em;
 }
+
+th, td {
+  padding: 8px;
+}
+table, thead, tbody, tr, td {
+    border: none !important;
+}
+
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootstrap-vue/src/index.scss";
