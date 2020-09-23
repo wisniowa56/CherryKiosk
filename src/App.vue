@@ -8,7 +8,7 @@
     </div>
     <div class="content" style="display: none">
       <transition name="component-fade" mode="out-in">
-        <component v-bind:is="$store.getters.getComponent" />
+        <component v-bind:is="this.$store.getters.getComponent" />
       </transition>
     </div>
   </div>
@@ -16,11 +16,13 @@
 
 <script>
 import Substitutions from "./components/Substitutions";
+import FirebaseAnnouncements from "./components/FirebaseAnnouncements";
 
 export default {
   name: "App",
   components: {
     Substitutions,
+    FirebaseAnnouncements,
   },
 };
 </script>

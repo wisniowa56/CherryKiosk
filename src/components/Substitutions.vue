@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       scrollDelay: undefined,
+      timesScrolled: 0,
     };
   },
   mounted() {
@@ -30,6 +31,11 @@ export default {
       setTimeout(() => {
         this.pageScroll();
       }, 5000);
+    } else {
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        this.pageScroll();
+      }, 600);
     }
   },
   methods: {
@@ -41,14 +47,26 @@ export default {
         document.body.offsetHeight
       ) {
         clearTimeout(this.scrollDelay);
-        this.scrollDelay = setTimeout(this.pageUp, 2000);
+        this.scrollDelay = setTimeout(this.pageUp, 5000);
       }
     },
     pageUp() {
-      window.scrollTo(0, 0);
-      setTimeout(() => {
-        this.pageScroll();
-      }, 600);
+      this.timesScrolled++;
+      if (
+        this.timesScrolled % 5 == 0 &&
+        this.$store.getters.getComponent === "Substitutions"
+      ) {
+        console.log("switch components");
+        let list = this.$store.getters.getAvailableComponents;
+        let index = list.indexOf(this.$store.getters.getComponent);
+        let newIndex = (index + 1) % list.length;
+        this.$store.commit("switchComponent", list[newIndex]);
+      } else {
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+          this.pageScroll();
+        }, 600);
+      }
     },
     setTableView() {
       if (this.$store.getters.getSubstitutions == undefined) return;

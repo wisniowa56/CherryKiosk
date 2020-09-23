@@ -10,6 +10,7 @@ Vue.use(Vuex);
 var store = new Vuex.Store({
   state: {
     component: "Substitutions",
+    availableComponents: ["Substitutions", "FirebaseAnnouncements"],
     substitutions: undefined,
     substitutionsScrolling: false
   },
@@ -22,6 +23,7 @@ var store = new Vuex.Store({
   },
   getters: {
     getComponent: state => state.component,
+    getAvailableComponents: state => state.availableComponents,
     getSubstitutions: state => state.substitutions,
     getSubstitutionsScrolling: state => state.substitutionsScrolling
   }
